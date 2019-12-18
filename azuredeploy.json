@@ -16,17 +16,17 @@
     },
     "Vnet": {
       "type": "string",
-      "defaultValue": "ex: 10.0.0.0/16",
       "metadata": {
         "description": "Vnet Address ex: 10.0.0.0/16"
-      }
+      },
+      "defaultValue": "ex: 10.0.0.0/16",
     },
     "SubNet": {
       "type": "string",
-      "defaultValue": "ex: 10.0.0.0/24",
       "metadata": {
         "description": "SubNet 10.0.0.0/24"
-      }
+      },
+      "defaultValue": "ex: 10.0.0.0/24",
     },
     "_artifactsLocation": {
       "type": "string",
