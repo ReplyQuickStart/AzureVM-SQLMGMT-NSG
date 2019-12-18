@@ -14,13 +14,13 @@
         "description": "Password for the Virtual Machine."
       }
     },
-    "addressSpace": {
+    "222222222222222": {
       "type": "string",
       "metadata": {
         "description": "222222222222222"
       }
     },
-    "SubnetAddress": {
+    "111111111111": {
       "type": "string",
       "metadata": {
         "description": "111111111111"
@@ -50,9 +50,9 @@
   },
   "variables": {
     "nicName": "VM01Nic",
-    "addressPrefix": "[parameters('addressSpace')]",
+    "addressPrefix": "[parameters('222222222222222')]",
     "subnetName": "Subnet",
-    "subnetPrefix": "[parameters('SubnetAddress')]",
+    "subnetPrefix": "[parameters('111111111111')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "vmName": "VM01",
     "virtualNetworkName": "VNET-01",
