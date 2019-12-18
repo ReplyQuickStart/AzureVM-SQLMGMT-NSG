@@ -17,7 +17,13 @@
     "addressSpace": {
       "type": "securestring",
       "metadata": {
-        "description": "Network Address Space (x.x.x.x/x)"
+        "description": "Virtual Network Address Space (ex: 10.0.0.0/16)"
+      }
+    },
+    "SubnetAddress": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Subnet Address (ex: 10.0.0.0/24)"
       }
     },
     "_artifactsLocation": {
@@ -46,7 +52,7 @@
     "nicName": "VM01Nic",
     "addressPrefix": "[parameters('addressSpace')]",
     "subnetName": "Subnet",
-    "subnetPrefix": "10.3.0.0/24",
+    "subnetPrefix": "[parameters('SubnetAddress')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "vmName": "VM01",
     "virtualNetworkName": "VNET-01",
