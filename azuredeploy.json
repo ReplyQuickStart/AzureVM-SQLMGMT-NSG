@@ -2,6 +2,12 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "VmName": {
+      "type": "string",
+      "metadata": {
+        "description": "Virtual Machine Name"
+      }
+    },
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -12,6 +18,12 @@
       "type": "securestring",
       "metadata": {
         "description": "Password for the Virtual Machine."
+      }
+    },
+    "Vnet-Name": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Virtual Network Name"
       }
     },
     "Vnet": {
@@ -36,13 +48,6 @@
       },
       "defaultValue": "https://raw.githubusercontent.com/ReplyQuickStart/AzureVM-SQLMGMT-NSG/master/"
     },
-    "_artifactsLocationSasToken": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated."
-      },
-      "defaultValue": ""
-    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
@@ -52,19 +57,18 @@
     }
   },
   "variables": {
-    "nicName": "VM01Nic",
+    "nicName": "[contact parameters('VmName'),'-Nic'",
     "addressPrefix": "[parameters('Vnet')]",
     "subnetName": "Subnet",
     "subnetPrefix": "[parameters('SubNet')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "vmName": "VM01",
-    "virtualNetworkName": "VNET-01",
-    "publicIPAddressName": "VM01PublicIP",
+    "vmName": "[parameters('VmName')]",
+    "virtualNetworkName": "[parameters('Vnet-Name')]",
+    "publicIPAddressName": "[contact parameters('VmName'),'-PIP'",
     "dnsNameForPublicIP": "[uniqueString(resourceGroup().id)]",
     "scriptFolder": ".",
     "scriptFileName": "SQL Cluster Node-01.ps1",
-    "fileToBeCopied": "FileToBeCopied.txt",
-    "scriptParameters": "[concat('-artifactsLocation ', parameters('_artifactsLocation'), ' -artifactsLocationSasToken \"', parameters('_artifactsLocationSasToken'), '\" -folderName ', variables('scriptFolder'), ' -fileToInstall ', variables('fileToBeCopied'))]"
+    "scriptParameters": "[concat('-artifactsLocation ', parameters('_artifactsLocation'), ' -artifactsLocationSasToken \"', '\" -folderName ', variables('scriptFolder'), ' -fileToInstall ', variables('fileToBeCopied'))]"
   },
   "resources": [
     {
@@ -178,7 +182,7 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": [
-                "[concat(parameters('_artifactsLocation'), '/', variables('ScriptFolder'), '/', variables('ScriptFileName'), parameters('_artifactsLocationSasToken'))]"
+                "[concat(parameters('_artifactsLocation'), '/', variables('ScriptFolder'), '/', variables('ScriptFileName'))]"
               ],
               "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('scriptFolder'), '/', variables('scriptFileName'), ' ', variables('scriptParameters'))]"
             }
