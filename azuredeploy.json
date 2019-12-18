@@ -17,13 +17,13 @@
     "addressSpace": {
       "type": "string",
       "metadata": {
-        "description": "Vnet Address ex: 10.0.0.0/16"
+        "description": "222222222222222"
       }
     },
     "SubnetAddress": {
       "type": "string",
       "metadata": {
-        "description": "SubNet 10.0.0.0/24"
+        "description": "111111111111"
       }
     },
     "_artifactsLocation": {
