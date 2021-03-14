@@ -1,4 +1,4 @@
-# Deploy Windows VM and execute a custom PowerShell script to Install SQL Server 2016
+# Deploy Windows VM and execute a custom PowerShell script to SSMS
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net)
 
