@@ -67,7 +67,7 @@
     "publicIPAddressName": "[contact parameters('VmName'),'-PIP'",
     "dnsNameForPublicIP": "[uniqueString(resourceGroup().id)]",
     "scriptFolder": ".",
-    "scriptFileName": "SQL Cluster Node-01.ps1",
+    "scriptFileName": "Setup-ssms.ps1",
     "scriptParameters": "[concat('-artifactsLocation ', parameters('_artifactsLocation'), ' -artifactsLocationSasToken \"', '\" -folderName ', variables('scriptFolder'), ' -fileToInstall ', variables('fileToBeCopied'))]"
   },
   "resources": [
